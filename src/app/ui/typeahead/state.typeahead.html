@@ -1,0 +1,8 @@
+<input [(ngModel)]="selected"
+        [typeahead]="states"
+        [typeaheadOptionsLimit]="7"
+        (typeaheadOnSelect)="typeaheadOnSelect($event)"
+        [typeaheadMinLength]="1"
+        placeholder="Typeahead inside a form"
+        class="form-control">
+  
