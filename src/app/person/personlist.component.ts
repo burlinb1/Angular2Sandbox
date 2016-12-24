@@ -5,6 +5,7 @@ import { Person } from '../person/person';
 @Component({
     selector: "personlist",
     templateUrl: "../person/personlist.component.html",
+    styleUrls: ["../person/personlist.component.css"],
     providers: [PersonService]
 })
 export class PersonListComponent implements OnInit {
@@ -16,5 +17,9 @@ export class PersonListComponent implements OnInit {
 
     ngOnInit(): void {
         this.Persons = this.personService.getPersons();
+    }
+
+    onSelect(person: Person){
+        alert(person.FirstName);
     }
 }

@@ -1,3 +1,7 @@
-<div *ngFor="let person of Persons">
-    <div>{{ person.FirstName }}</div>
-</div>
+<ul class="list-group">
+    <li *ngFor="let person of Persons" 
+        (click)="onSelect(person)"
+        class="list-group-item">
+        <span style="margin-right:10px;">{{person.Id}}</span>{{ person.FirstName }}
+    </li>
+</ul>
