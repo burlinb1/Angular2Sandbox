@@ -7,8 +7,8 @@ import { Person } from '../person/person';
 })
 export class PersonComponent{
     constructor(){
-        this.person = new Person();
-        this.person.FirstName = "Hello";
+        //this.person = new Person();
+        //this.person.FirstName = "Hello";
     }
 
     @Input()

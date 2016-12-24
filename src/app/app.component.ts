@@ -3,7 +3,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 //import { TypeaheadMatch } from 'ng2-bootstrap/typeahead/typeahead-match.class';
-import { PersonComponent } from './person/person.component';
+//import { PersonComponent } from './person/person.component';
+import { PersonListComponent } from './person/personlist.component';
 
 @Component({
   selector: 'app-root',

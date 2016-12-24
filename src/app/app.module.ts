@@ -6,11 +6,13 @@ import { TypeaheadModule  } from 'ng2-bootstrap';
 import { SmartInput } from './ui/smartinput';
 import { AppComponent } from './app.component';
 import { PersonComponent } from './person/person.component';
+import { PersonListComponent } from './person/personlist.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SmartInput,
+    PersonListComponent,
     PersonComponent
   ],
   imports: [
