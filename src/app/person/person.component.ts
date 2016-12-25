@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { Person } from '../person/person';
 
 @Component({
@@ -7,10 +7,16 @@ import { Person } from '../person/person';
 })
 export class PersonComponent{
     constructor(){
-        //this.person = new Person();
-        //this.person.FirstName = "Hello";
     }
 
     @Input()
     person: Person
+    
+    // Parent component can subsccribe to the onCancel event.
+    @Output() onCancel = new EventEmitter();
+
+    onCancelClick(): void{
+        //alert('cancel');
+        this.onCancel.emit();
+    }
 }

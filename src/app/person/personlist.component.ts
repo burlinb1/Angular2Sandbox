@@ -19,7 +19,14 @@ export class PersonListComponent implements OnInit {
         this.Persons = this.personService.getPersons();
     }
 
-    onSelect(person: Person){
-        alert(person.FirstName);
+    onSelect(person: Person): void {        
+        this.selectedPerson = person;
     }
+
+    // Fires when person 'Cancel' button is clicked.
+    cancelEdit(event): void{
+        this.selectedPerson = null;
+    }
+
+    selectedPerson: Person;
 }

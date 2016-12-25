@@ -1,7 +1,14 @@
-<ul class="list-group">
-    <li *ngFor="let person of Persons" 
-        (click)="onSelect(person)"
-        class="list-group-item">
-        <span style="margin-right:10px;">{{person.Id}}</span>{{ person.FirstName }}
-    </li>
-</ul>
+<div *ngIf="!selectedPerson">
+    <ul class="list-group">
+        <li *ngFor="let person of Persons" 
+            (click)="onSelect(person)"
+            class="list-group-item">
+            <span style="margin-right:10px;">{{person.Id}}</span>{{ person.FirstName }}
+        </li>
+    </ul>
+</div>
+<div *ngIf="selectedPerson">
+  <person 
+    [person]="selectedPerson"
+    (onCancel)="cancelEdit($event)"></person>  
+</div>
