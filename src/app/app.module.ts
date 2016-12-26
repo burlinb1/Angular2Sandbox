@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { TypeaheadModule  } from 'ng2-bootstrap';
-import { SmartInput } from './ui/smartinput';
 import { SmartInput } from './ui/smartinput/smartinput';
 import { AppComponent } from './app.component';
 import { PersonComponent } from './person/person.component';
