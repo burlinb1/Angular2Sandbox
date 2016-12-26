@@ -1,1 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+.btn-container-right {
+  direction: rtl;  
+}
+.btn-container-right button{
+    margin-left:5px;
+}

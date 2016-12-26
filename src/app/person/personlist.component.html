@@ -1,11 +1,16 @@
 <div *ngIf="!selectedPerson">
-    <ul class="list-group">
-        <li *ngFor="let person of Persons" 
-            (click)="onSelect(person)"
-            class="list-group-item">
-            <span style="margin-right:10px;">{{person.Id}}</span>{{ person.FirstName }}
-        </li>
-    </ul>
+    <div class="form-group pull-right">
+        <button type="button" class="btn btn-primary">Add</button>
+    </div>
+    <div class="form-group">
+        <ul class="list-group">
+            <li *ngFor="let person of Persons" 
+                (click)="onSelect(person)"
+                class="list-group-item">
+                <span style="margin-right:10px;">{{person.Id}}</span>{{ person.FirstName }}
+            </li>
+        </ul>
+    </div>
 </div>
 <div *ngIf="selectedPerson">
   <person 
