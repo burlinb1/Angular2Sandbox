@@ -8,6 +8,7 @@ import { StateTypeahead } from './ui/typeahead/state.typeahead';
 import { AppComponent } from './app.component';
 import { PersonComponent } from './person/person.component';
 import { PersonListComponent } from './person/personlist.component';
+import { StateService } from './service/state/state.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { PersonListComponent } from './person/personlist.component';
     HttpModule,
     TypeaheadModule.forRoot(),
   ],
-  providers: [],
+  providers: [StateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

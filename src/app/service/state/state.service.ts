@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { State } from '../service/state';
+import { State } from '../../service/state/state';
 
 @Injectable()
 export class StateService{
