@@ -3,7 +3,10 @@
     <div class="form-group">
         <label class="col-sm-3 control-label">First&nbsp;name</label>
         <div class="col-sm-9">
-            <smartinput [(ngModel)]="person.FirstName"></smartinput>
+            <!--smartinput [(ngModel)]="person.FirstName"></smartinput-->
+            <md-input-container>
+                <input type="input" [(ngModel)]="person.FirstName" md-input />
+            </md-input-container>
         </div>                
     </div>
     <div class="form-group">

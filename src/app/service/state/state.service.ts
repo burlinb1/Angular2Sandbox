@@ -3,7 +3,7 @@ import { State } from '../../service/state/state';
 
 @Injectable()
 export class StateService{
-    getSates(): Promise<State[]>{
+    getStates(): Promise<State[]>{
         return Promise.resolve(STATES);
     }   
 }

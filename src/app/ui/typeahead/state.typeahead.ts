@@ -15,7 +15,7 @@ import { TypeaheadMatch } from 'ng2-bootstrap/typeahead/typeahead-match.class';
       (typeaheadOnSelect)="typeaheadOnSelect($event)"
       [typeaheadOptionsLimit]="7"
       [typeaheadOptionField]="'name'"
-      placeholder="Locations loaded with timeout"
+      placeholder="Start typing a state name"
       class="form-control">`
 })
 export class StateTypeahead {  
