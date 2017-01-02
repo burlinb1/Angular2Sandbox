@@ -25,7 +25,8 @@ export class PersonListComponent implements OnInit {
 
     // Fires when person 'Cancel' button is clicked.
     cancelEdit(event): void{
-        this.selectedPerson = null;
+        this.selectedPerson = null; 
+        //alert('person now null');
     }
 
     selectedPerson: Person;

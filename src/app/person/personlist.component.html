@@ -13,7 +13,8 @@
     </div>
 </div>
 <div *ngIf="selectedPerson">
-  <person 
-    [person]="selectedPerson"
-    (onCancel)="cancelEdit($event)"></person>  
+    <person 
+        [person]="selectedPerson"
+        (onCancel)="cancelEdit($event)">
+    </person>  
 </div>

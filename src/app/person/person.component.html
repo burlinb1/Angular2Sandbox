@@ -3,10 +3,10 @@
     <div class="form-group">
         <label class="col-sm-3 control-label">First&nbsp;name</label>
         <div class="col-sm-9">
-            <!--smartinput [(ngModel)]="person.FirstName"></smartinput-->
-            <md-input-container>
+            <smartinput [(ngModel)]="person.FirstName"></smartinput>
+            <!--md-input-container>
                 <input type="input" [(ngModel)]="person.FirstName" md-input />
-            </md-input-container>
+            </md-input-container-->            
         </div>                
     </div>
     <div class="form-group">
@@ -30,6 +30,12 @@
         </div>
     </div>
     <div class="form-group">
+        <label class="col-sm-3 control-label">City</label>
+        <div class="col-sm-9">
+            <city-typeahead></city-typeahead>
+        </div>
+    </div>
+    <div class="form-group">
         <label class="col-sm-3 control-label">State</label>
         <div class="col-sm-9">
             <state-typeahead></state-typeahead>
@@ -38,7 +44,7 @@
 </div>
 <div class="col-sm-12">
     <div class="form-group btn-container-right">
-        <button (click)="onCancelClick()" type="button" class="btn btn-default">Cancel</button>       
-        <button type="button" class="btn btn-primary">Save</button>        
+        <button (click)="onCancelClick()" class="btn btn-default">Cancel</button>       
+        <button color="primary" class="btn btn-primary">Save</button>        
     </div>
 </div>

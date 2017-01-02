@@ -16,7 +16,6 @@ export class PersonComponent{
     @Output() onCancel = new EventEmitter();
 
     onCancelClick(): void{
-        //alert('cancel');
         this.onCancel.emit();
     }
 }

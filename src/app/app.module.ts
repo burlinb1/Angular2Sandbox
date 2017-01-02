@@ -2,15 +2,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { MaterialModule } from '@angular/material';
+//import { MaterialModule } from '@angular/material';
 import { TypeaheadModule  } from 'ng2-bootstrap';
 import { SmartInput } from './ui/smartinput/smartinput';
 import { StateTypeahead } from './ui/typeahead/state.typeahead';
+import { CityTypeahead } from './ui/typeahead/city.typeahead';
 import { AppComponent } from './app.component';
 import { PersonComponent } from './person/person.component';
 import { PersonListComponent } from './person/personlist.component';
 import { StateService } from './service/state/state.service';
-import 'hammerjs';
+//import 'hammerjs';
 
 @NgModule({
   declarations: [
@@ -18,13 +19,13 @@ import 'hammerjs';
     SmartInput,
     PersonListComponent,
     PersonComponent,
-    StateTypeahead
+    StateTypeahead,
+    CityTypeahead
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    MaterialModule,
     TypeaheadModule.forRoot(),
   ],
   providers: [StateService],
