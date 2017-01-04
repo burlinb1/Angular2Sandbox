@@ -1,30 +1,30 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { TypeaheadMatch } from 'ng2-bootstrap/typeahead/typeahead-match.class';
+import { CityService } from '../../service/city/city.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
-import { TypeaheadMatch } from 'ng2-bootstrap/typeahead/typeahead-match.class';
-//import { StateService } from '../../service/state.service';
 
 @Component({
   selector: 'city-typeahead',
   template: `
-    <input [(ngModel)]="asyncSelected"
+    <input [(ngModel)]="selected"
       [typeahead]="dataSource"
       (typeaheadLoading)="changeTypeaheadLoading($event)"
       (typeaheadNoResults)="changeTypeaheadNoResults($event)"
       (typeaheadOnSelect)="typeaheadOnSelect($event)"
       [typeaheadOptionsLimit]="7"
-      [typeaheadOptionField]="'name'"
+      [typeaheadOptionField]="'Name'"
       placeholder="Start typing a city name"
-      class="form-control">`
+      class="form-control">`,
+    providers: [CityService]
 })
 export class CityTypeahead {  
-  //http://stackoverflow.com/questions/39365359/using-ng2-bootstrap-with-angular-2-rc-6-cant-bind-to-cant-bind-to-sinc
-  public constructor() {
+  public constructor(private cityService:CityService) {
     this.dataSource = Observable.create((observer:any) => {
       // Runs on every search
       observer.next(this.selected);
-    }).mergeMap((token:string) => this.getCities(token));
+    }).mergeMap((token:string) => this.cityService.getCities(token));
   }
 
   public dataSource:Observable<any>;
@@ -32,17 +32,6 @@ export class CityTypeahead {
   public typeaheadLoading:boolean = false;
   public typeaheadNoResults:boolean = false;    
   
-  public getCities(token:string):Observable<any> {
-
-    let query = new RegExp(token, 'ig');
-
-    return Observable.of(
-      this.cities.filter((state:any) => {
-        return query.test(state.name);
-      })
-    );
-  }
-
   public changeTypeaheadLoading(e:boolean):void {
     this.typeaheadLoading = e;
   }
@@ -55,27 +44,4 @@ export class CityTypeahead {
     console.log('Selected value: ', e.value);
     alert(e.value);
   }
-
-/*
-  public states:Array<string> = ['Alabama', 'Alaska', 'Arizona', 'Arkansas',
-    'California', 'Colorado',
-    'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho',
-    'Illinois', 'Indiana', 'Iowa',
-    'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts',
-    'Michigan', 'Minnesota',
-    'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-    'New Jersey', 'New Mexico',
-    'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon',
-    'Pennsylvania', 'Rhode Island',
-    'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-    'Virginia', 'Washington',
-    'West Virginia', 'Wisconsin', 'Wyoming'];
-    */
-    public cities:Array<any> = [
-        {id: 1, name: "Astoria"},
-        {id: 2, name: "Federal Way"},
-        {id: 3, name: "Olympia"},
-        {id: 4, name: "Seattle"},
-        {id: 5, name: "Tacoma"}
-    ];
 }
