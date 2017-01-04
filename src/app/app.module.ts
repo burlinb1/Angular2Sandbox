@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { PersonComponent } from './person/person.component';
 import { PersonListComponent } from './person/personlist.component';
 import { StateService } from './service/state/state.service';
+import { CityService } from './service/city/city.service';
 //import 'hammerjs';
 
 @NgModule({
@@ -28,7 +29,7 @@ import { StateService } from './service/state/state.service';
     HttpModule,
     TypeaheadModule.forRoot(),
   ],
-  providers: [StateService],
+  providers: [CityService, StateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
