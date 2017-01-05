@@ -13,7 +13,7 @@ export class CityService{
 
         return Observable.of(
             CITIES.filter((city:City) => {
-                return query.test(city.Name);                
+                return city.Name.toLowerCase().startsWith(token.toLowerCase());                
             })
         );        
     }   

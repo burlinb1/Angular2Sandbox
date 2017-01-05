@@ -8,7 +8,7 @@ import 'rxjs/add/observable/of';
 @Component({
   selector: 'city-typeahead',
   template: `
-    <input [(ngModel)]="selected"
+    <input [(ngModel)]="selectedText"
       [typeahead]="dataSource"
       (typeaheadLoading)="changeTypeaheadLoading($event)"
       (typeaheadNoResults)="changeTypeaheadNoResults($event)"
@@ -16,22 +16,23 @@ import 'rxjs/add/observable/of';
       [typeaheadOptionsLimit]="7"
       [typeaheadOptionField]="'Name'"
       placeholder="Start typing a city name"
-      class="form-control">`,
+      class="form-control">
+      <div>{{selectedValue}}</div>`,
     providers: [CityService]
 })
 export class CityTypeahead {  
   public constructor(private cityService:CityService) {
     this.dataSource = Observable.create((observer:any) => {
       // Runs on every search
-      observer.next(this.selected);
+      observer.next(this.selectedText);
     }).mergeMap((token:string) => this.cityService.getCities(token));
   }
 
   public dataSource:Observable<any>;
-  public selected:string = '';
+  public selectedText:string = "";
+  public selectedValue:string = "";
   public typeaheadLoading:boolean = false;
   public typeaheadNoResults:boolean = false;    
-  
   public changeTypeaheadLoading(e:boolean):void {
     this.typeaheadLoading = e;
   }
@@ -41,7 +42,6 @@ export class CityTypeahead {
   }
 
   public typeaheadOnSelect(e:TypeaheadMatch):void {
-    console.log('Selected value: ', e.value);
-    alert(e.value);
+    this.selectedValue = e.item.Id;
   }
 }
