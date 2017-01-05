@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 //import { MaterialModule } from '@angular/material';
@@ -14,6 +15,10 @@ import { StateService } from './service/state/state.service';
 import { CityService } from './service/city/city.service';
 //import 'hammerjs';
 
+const appRoutes: Routes = [
+  { path: 'personlist', component: PersonListComponent }    
+];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +31,7 @@ import { CityService } from './service/city/city.service';
   imports: [
     BrowserModule,
     FormsModule,
+    RouterModule.forRoot(appRoutes),
     HttpModule,
     TypeaheadModule.forRoot(),
   ],
