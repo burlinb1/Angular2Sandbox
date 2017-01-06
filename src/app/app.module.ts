@@ -9,20 +9,19 @@ import { SmartInput } from './ui/smartinput/smartinput';
 import { StateTypeahead } from './ui/typeahead/state.typeahead';
 import { CityTypeahead } from './ui/typeahead/city.typeahead';
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HomeComponent } from './home/home.component';
 import { PersonComponent } from './person/person.component';
 import { PersonListComponent } from './person/personlist.component';
 import { StateService } from './service/state/state.service';
 import { CityService } from './service/city/city.service';
 //import 'hammerjs';
 
-const appRoutes: Routes = [
-  { path: 'personlist', component: PersonListComponent }    
-];
-
 @NgModule({
   declarations: [
     AppComponent,
     SmartInput,
+    HomeComponent,
     PersonListComponent,
     PersonComponent,
     StateTypeahead,
@@ -31,7 +30,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes),
+    AppRoutingModule,
     HttpModule,
     TypeaheadModule.forRoot(),
   ],
