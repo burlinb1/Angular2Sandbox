@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 //import { MaterialModule } from '@angular/material';
 import { TypeaheadModule  } from 'ng2-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SmartInput } from './ui/smartinput/smartinput';
 import { StateTypeahead } from './ui/typeahead/state.typeahead';
 import { CityTypeahead } from './ui/typeahead/city.typeahead';
@@ -32,6 +33,7 @@ import { CityService } from './service/city/city.service';
     FormsModule,
     AppRoutingModule,
     HttpModule,
+    NgbModule.forRoot(), 
     TypeaheadModule.forRoot(),
   ],
   providers: [CityService, StateService],
