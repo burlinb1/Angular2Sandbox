@@ -1,5 +1,55 @@
-<div>
-    <h2>Person component</h2>
-    <input class="form-control" [(ngModel)]="person.FirstName" />
-    <smartinput [(ngModel)]="person.FirstName"></smartinput>
+<h4>Person</h4>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group row">
+            <label class="col-sm-3 control-label">First&nbsp;name</label>
+            <div class="col-sm-9">
+                <smartinput [(ngModel)]="person.FirstName"></smartinput>
+                <!--md-input-container>
+                    <input type="input" [(ngModel)]="person.FirstName" md-input />
+                </md-input-container-->            
+            </div>                
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 control-label">Last&nbsp;name</label>
+            <div class="col-sm-9">
+                <smartinput [(ngModel)]="person.LastName"></smartinput>
+            </div>                
+        </div>        
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group row">
+            <label class="col-sm-3 control-label">Address&nbsp;1</label>
+            <div class="col-sm-9">
+                <smartinput [(ngModel)]="person.PrimaryAddress.StreetAddress1"></smartinput>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 control-label">Address&nbsp;2</label>
+            <div class="col-sm-9">
+                <smartinput [(ngModel)]="person.PrimaryAddress.StreetAddress2"></smartinput>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 control-label">City</label>
+            <div class="col-sm-9">
+                <city-typeahead></city-typeahead>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 control-label">State</label>
+            <div class="col-sm-9">
+                <!--state-typeahead></state-typeahead-->
+                <input type="text" class="form-control" [(ngModel)]="selectedState" [ngbTypeahead]="searchStates" />
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group btn-container-right">
+            <button (click)="onCancelClick()" class="btn btn-default">Cancel</button>       
+            <button color="primary" class="btn btn-primary">Save</button>        
+        </div>
+    </div>
 </div>

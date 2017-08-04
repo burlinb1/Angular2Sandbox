@@ -3,28 +3,69 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { TypeaheadMatch } from 'ng2-bootstrap/typeahead/typeahead-match.class';
+//import { StateService } from '../../service/state.service';
 
 @Component({
   selector: 'state-typeahead',
-  templateUrl: 'state.typeahead.html'
+  template: `
+    <input [(ngModel)]="asyncSelected"
+      [typeahead]="dataSource"
+      (typeaheadLoading)="changeTypeaheadLoading($event)"
+      (typeaheadNoResults)="changeTypeaheadNoResults($event)"
+      (typeaheadOnSelect)="typeaheadOnSelect($event)"
+      [typeaheadOptionsLimit]="7"
+      [typeaheadOptionField]="'name'"
+      placeholder="Start typing a state name"
+      class="form-control">`
 })
-export class AppComponent {  
+export class StateTypeahead {  
   //http://stackoverflow.com/questions/39365359/using-ng2-bootstrap-with-angular-2-rc-6-cant-bind-to-cant-bind-to-sinc
-  
-  public stateCtrl:FormControl = new FormControl();
+  public constructor() {
+    this.dataSource = Observable.create((observer:any) => {
+      // Runs on every search
+      observer.next(this.asyncSelected);
+    }).mergeMap((token:string) => this.getStatesAsObservable(token));
+  }
 
-  public myForm:FormGroup = new FormGroup({
-    state: this.stateCtrl
-  });
+  //public stateCtrl:FormControl = new FormControl();
 
-  public customSelected:string = '';
-  public groupSelected:string = '';
-  public selected:string = '';
+  //public myForm:FormGroup = new FormGroup({
+  //  state: this.stateCtrl
+  //});
+
+  //public customSelected:string = '';
+  //public groupSelected:string = '';
+  //public selected:string = '';
   public dataSource:Observable<any>;
   public asyncSelected:string = '';
   public typeaheadLoading:boolean = false;
-  public typeaheadNoResults:boolean = false;
+  public typeaheadNoResults:boolean = false;    
+  
+  public getStatesAsObservable(token:string):Observable<any> {
 
+    let query = new RegExp(token, 'ig');
+
+    return Observable.of(
+      this.statesComplex.filter((state:any) => {
+        return query.test(state.name);
+      })
+    );
+  }
+
+  public changeTypeaheadLoading(e:boolean):void {
+    this.typeaheadLoading = e;
+  }
+
+  public changeTypeaheadNoResults(e:boolean):void {
+    this.typeaheadNoResults = e;
+  }
+
+  public typeaheadOnSelect(e:TypeaheadMatch):void {
+    console.log('Selected value: ', e.value);
+    alert(e.value);
+  }
+
+/*
   public states:Array<string> = ['Alabama', 'Alaska', 'Arizona', 'Arkansas',
     'California', 'Colorado',
     'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho',
@@ -38,7 +79,7 @@ export class AppComponent {
     'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
     'Virginia', 'Washington',
     'West Virginia', 'Wisconsin', 'Wyoming'];
-
+    */
   public statesComplex:Array<any> = [
     {id: 1, name: 'Alabama', region: 'South'}, {id: 2, name: 'Alaska', region: 'West'}, {id: 3, name: 'Arizona', region: 'West'},
     {id: 4, name: 'Arkansas', region: 'South'}, {id: 5, name: 'California', region: 'West'},
@@ -65,34 +106,4 @@ export class AppComponent {
     {id: 47, name: 'Virginia', region: 'South'}, {id: 48, name: 'Washington', region: 'South'},
     {id: 49, name: 'West Virginia', region: 'South'}, {id: 50, name: 'Wisconsin', region: 'Midwest'},
     {id: 51, name: 'Wyoming', region: 'West'}];
-
-  public constructor() {
-    this.dataSource = Observable.create((observer:any) => {
-      // Runs on every search
-      observer.next(this.asyncSelected);
-    }).mergeMap((token:string) => this.getStatesAsObservable(token));
-  }
-  
-  public getStatesAsObservable(token:string):Observable<any> {
-    let query = new RegExp(token, 'ig');
-
-    return Observable.of(
-      this.statesComplex.filter((state:any) => {
-        return query.test(state.name);
-      })
-    );
-  }
-
-  public changeTypeaheadLoading(e:boolean):void {
-    this.typeaheadLoading = e;
-  }
-
-  public changeTypeaheadNoResults(e:boolean):void {
-    this.typeaheadNoResults = e;
-  }
-
-  public typeaheadOnSelect(e:TypeaheadMatch):void {
-    console.log('Selected value: ', e.value);
-    alert(e.value);
-  }
 }
